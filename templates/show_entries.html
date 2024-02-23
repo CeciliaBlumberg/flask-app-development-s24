@@ -2,16 +2,22 @@
 {% block body %}
   <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
     <dl>
-      <dt>Title:
+      <dt>To Do:
       <dd><input type="text" size="30" name="title">
-      <dt>Text:
+      <dt>Description:
       <dd><textarea name="text" rows="5" cols="40"></textarea>
-      <dd><input type="submit" value="Share">
+      <dd><input type="submit" value="Add">
     </dl>
   </form>
   <ul class="entries">
   {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li>
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li><input type="checkbox">
+      <p>
+        <form action="/delete" method="post">
+            <input name="id" type="hidden" value="{{ entry.id }}">
+            <input type="submit" value="Delete Task">
+        </form>
+    </p>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em></li>
   {% endfor %}
