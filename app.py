@@ -88,7 +88,7 @@ def update_entry():
     db = get_db()
     id = request.form['id']
     if request.form.get('complete'):
-        db.execute('update entries set complete  = "Complete" where id = ?', [id])
+        db.execute('update entries set complete = \'Complete\' where id = ?', [id])
         db.commit()
     return redirect(url_for('show_entries'))
 
