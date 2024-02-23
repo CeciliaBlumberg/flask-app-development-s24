@@ -11,7 +11,10 @@
   </form>
   <ul class="entries">
   {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li><input type="checkbox">
+      <p> {{ entry.id }}</p>
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }} {{ entry.complete }}</li>
+      <form action="/update" method="post"><input type="checkbox" name="complete">
+      <button type = "submit">Complete</button></form>
       <p>
         <form action="/delete" method="post">
             <input name="id" type="hidden" value="{{ entry.id }}">
